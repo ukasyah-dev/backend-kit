@@ -8,7 +8,7 @@ on:
 
 jobs:
   publish:
-    uses: ukasyah-dev/actions/.github/workflows/publish-cargo.yml@main
+    uses: ukasyah-dev/actions/.github/workflows/publish-crate.yml@main
     permissions:
       contents: read
     secrets: inherit
