@@ -5,7 +5,7 @@ use axum::{
     Router,
 };
 use serde::Serialize;
-use serde_json::{json, Value};
+use serde_json::json;
 use tokio::net::TcpListener;
 
 use crate::{error, shutdown};
@@ -56,10 +56,14 @@ pub async fn serve(router: Router, port: u16) -> Result<(), axum::BoxError> {
     Ok(())
 }
 
-async fn not_found() -> Json<Value> {
-    Json(json!({"message": "not found"}))
+async fn not_found() -> Response {
+    (StatusCode::NOT_FOUND, Json(json!({"message": "not found"}))).into_response()
 }
 
-async fn method_not_allowed() -> Json<Value> {
-    Json(json!({"message": "method not allowed"}))
+async fn method_not_allowed() -> Response {
+    (
+        StatusCode::METHOD_NOT_ALLOWED,
+        Json(json!({"message": "method not allowed"})),
+    )
+        .into_response()
 }
