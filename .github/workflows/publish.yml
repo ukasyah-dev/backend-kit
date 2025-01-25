@@ -1,0 +1,13 @@
+name: Publish
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  publish:
+    uses: ukasyah-dev/actions/.github/workflows/publish-cargo.yml@main
+    permissions:
+      contents: read
+    secrets: inherit
